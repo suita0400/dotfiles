@@ -1,0 +1,4 @@
+[tools]
+neovim = "latest"
+node = "lts"
+# 必要に応じて他ツールも簡単に追加可能 (go, python, rustなど)

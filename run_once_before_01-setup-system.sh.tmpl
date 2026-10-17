@@ -1,0 +1,35 @@
+#!/bin/bash
+set -eu
+
+echo "==> [1/4] apt パッケージのインストール"
+sudo apt update
+sudo apt install -y \
+    build-essential \
+    curl \
+    git \
+    tmux \
+    unzip \
+    ripgrep \
+    fd-find
+
+# fd コマンドのエイリアス作成（Ubuntuではfdfindという名前になるため）
+mkdir -p ~/.local/bin
+ln -sf $(which fdfind) ~/.local/bin/fd 2>/dev/null || true
+
+echo "==> [2/4] /etc/wsl.conf の設定"
+sudo tee /etc/wsl.conf > /dev/null << 'EOF'
+[boot]
+systemd=true
+
+[network]
+generateResolvConf=true
+
+[interop]
+enabled=true
+appendWindowsPath=true
+EOF
+
+echo "==> [3/4] mise のインストール"
+if ! command -v mise &> /dev/null; then
+    curl https://mise.run | sh
+fi
