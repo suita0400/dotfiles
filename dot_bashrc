@@ -147,6 +147,15 @@ vim() {
     fi
 }
 
+vi() {
+    if [ $# -eq 1 ] && chezmoi managed "$1" >/dev/null 2>&1; then
+        echo "💡 [chezmoi] 管理対象ファイルです。chezmoi edit --apply で開きます..."
+        chezmoi edit --apply "$1"
+    else
+        command nvim "$@"
+    fi
+}
+
 # ターミナル起動時にchezmoiの差分をチェック
 if command -v chezmoi >/dev/null 2>&1; then
     if [ -n "$(chezmoi status)" ]; then
