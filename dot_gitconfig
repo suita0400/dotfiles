@@ -4,6 +4,7 @@
 [core]
     editor = nvim
     autocrlf = input
+	pager = cat
 [credential]
     helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
 [init]
