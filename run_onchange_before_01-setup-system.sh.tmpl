@@ -1,5 +1,5 @@
 #!/bin/bash
-# etc_wsl.conf hash: {{ include "etc_wsl.conf" | sha256sum }}
+# etc_wsl.conf hash: {{ include "etc_wsl.conf.tmpl" | sha256sum }}
 set -eu
 
 echo "==> [1/4] apt パッケージのインストール"
@@ -19,7 +19,7 @@ mkdir -p ~/.local/bin
 ln -sf $(which fdfind) ~/.local/bin/fd 2>/dev/null || true
 
 echo "==> [2/4] /etc/wsl.conf の設定"
-sudo cp "{{ .chezmoi.sourceDir }}/etc_wsl.conf" /etc/wsl.conf
+chezmoi execute-template < "{{ .chezmoi.sourceDir }}/etc_wsl.conf.tmpl" | sudo tee /etc/wsl.conf > /dev/null
 
 echo "==> [3/4] mise のインストール"
 if ! command -v mise &> /dev/null; then
