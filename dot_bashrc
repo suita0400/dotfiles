@@ -126,7 +126,7 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 
 # mise のアクティベート（NodeやNeovimが使えるようになります）
-eval "$($HOME/.local/bin/mise activate bash)"
+eval "$($HOME/.local/bin/mise activate bash --shims)"
 
 # nvim / vim でchezmoi管理ファイルを開いた時に自動で chezmoi edit --apply にすり替える
 nvim() {
