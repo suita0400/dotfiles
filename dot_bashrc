@@ -127,3 +127,11 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # mise のアクティベート（NodeやNeovimが使えるようになります）
 eval "$($HOME/.local/bin/mise activate bash)"
+
+# ターミナル起動時にchezmoiの差分をチェック
+if command -v chezmoi >/dev/null 2>&1; then
+    if [ -n "$(chezmoi status)" ]; then
+        echo -e "\e[33m[chezmoi] 直接編集された未反映のファイルがあります！('chezmoi re-add' で取り込めます)\e[m"
+        chezmoi status
+    fi
+fi
