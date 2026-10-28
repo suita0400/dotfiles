@@ -130,7 +130,7 @@ eval "$($HOME/.local/bin/mise activate bash --shims)"
 
 # nvim / vim でchezmoi管理ファイルを開いた時に自動で chezmoi edit --apply にすり替える
 nvim() {
-    if [ $# -eq 1 ] && chezmoi managed "$1" >/dev/null 2>&1; then
+    if [ $# -eq 1 ] && [ -f "$1" ] && chezmoi source-path "$1" >/dev/null 2>&1; then
         echo "💡 [chezmoi] 管理対象ファイルです。chezmoi edit --apply で開きます..."
         chezmoi edit --apply "$1"
     else
@@ -139,7 +139,7 @@ nvim() {
 }
 
 vim() {
-    if [ $# -eq 1 ] && chezmoi managed "$1" >/dev/null 2>&1; then
+    if [ $# -eq 1 ] && [ -f "$1" ] && chezmoi source-path "$1" >/dev/null 2>&1; then
         echo "💡 [chezmoi] 管理対象ファイルです。chezmoi edit --apply で開きます..."
         chezmoi edit --apply "$1"
     else
@@ -148,7 +148,7 @@ vim() {
 }
 
 vi() {
-    if [ $# -eq 1 ] && chezmoi managed "$1" >/dev/null 2>&1; then
+    if [ $# -eq 1 ] && [ -f "$1" ] && chezmoi source-path "$1" >/dev/null 2>&1; then
         echo "💡 [chezmoi] 管理対象ファイルです。chezmoi edit --apply で開きます..."
         chezmoi edit --apply "$1"
     else
