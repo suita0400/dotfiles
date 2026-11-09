@@ -164,5 +164,5 @@ if command -v chezmoi >/dev/null 2>&1; then
     fi
 fi
 
-# npm 無効化 (一時有効化したいときはunalias npmを実施のこと)
+# npm 無効化 (一時有効化したいときはunalias npmを実施のこと。)
 alias npm='echo "⚠️ npmは現在無効化しています。pnpm を使ってください！" && false'
